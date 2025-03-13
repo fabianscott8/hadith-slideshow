@@ -1,81 +1,90 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>Centered Hadith Slideshow</title>
+  <meta charset="utf-8" />
+  <title>Hadith Slideshow</title>
   <style>
-    /* Make body a fullscreen flex container for centering */
+    /* Make the body a full-screen flex container to center content */
     body {
       margin: 0;
       padding: 0;
       display: flex;
-      justify-content: center;  /* horizontal center */
-      align-items: center;      /* vertical center */
-      height: 100vh;            /* fill screen height */
+      justify-content: center;  /* horizontally center */
+      align-items: center;      /* vertically center */
+      height: 100vh;            /* fill entire screen's height */
       font-family: Arial, sans-serif;
-      text-align: center;       /* center text within container */
+      text-align: center;       /* center text within the container */
     }
 
-    /* A container to hold the two lines of text */
+    /* Container for each hadith */
     #hadith-container {
-      max-width: 800px;
-      margin: 0 1rem;  /* side padding for narrower screens */
+      max-width: 800px;  /* limit the width for readability */
+      margin: 0 1rem;    /* small side padding for narrower screens */
     }
 
+    /* Style for the main hadith text */
     .hadith-text {
       font-size: 2em;
-      margin-bottom: 0.5rem; /* gap between text and reference line */
+      margin-bottom: 0.5em; /* small space between hadith text and reference */
     }
 
+    /* Style for the reference line below the hadith */
     .hadith-reference {
       font-size: 1.2em;
-      color: #555; /* slightly lighter color to distinguish reference */
-      margin-bottom: 2rem;   /* extra space before the next hadith shows */
+      color: #555;
+      margin-bottom: 1.5rem; /* extra space before the slideshow changes */
     }
   </style>
 </head>
 <body>
-  <div id="hadith-container"></div>
+
+  <div id="hadith-container">Loading...</div>
 
   <script>
+    // === Add your hadiths here ===
     const hadiths = [
       {
-        // You can add a "number" property, too, if you want
-        text: "The strong man is not the one...",
-        reference: "Hadith #3: [Bukhari]"
+        number: "Hadith #1",
+        text: "Actions are (judged) by intentions...",
+        reference: "[Bukhari & Muslim]"
       },
       {
-        text: "Actions are by intentions...",
-        reference: "Hadith #1: [Bukhari & Muslim]"
+        number: "Hadith #2",
+        text: "None of you truly believes until...",
+        reference: "[Bukhari & Muslim]"
+      },
+      {
+        number: "Hadith #3",
+        text: "The strong man is not the one who overcomes others...",
+        reference: "[Bukhari]"
       }
-      // Add as many hadiths as you want
+      // ... Add as many hadiths as you like
     ];
 
     let currentIndex = 0;
+    const displayInterval = 10000; // 10 seconds (adjust as needed)
 
-    function showNextHadith() {
+    function showCurrentHadith() {
+      const container = document.getElementById('hadith-container');
       const current = hadiths[currentIndex];
-      const container = document.getElementById("hadith-container");
 
-      // Build HTML with the hadith on one line and reference on another
+      // Separate line for main hadith text and reference
       container.innerHTML = `
-        <div class="hadith-text">
-          "${current.text}"
-        </div>
-        <div class="hadith-reference">
-          ${current.reference}
-        </div>
+        <div class="hadith-text">"${current.text}"</div>
+        <div class="hadith-reference">${current.number}: ${current.reference}</div>
       `;
-
-      // Move to the next hadith; loop back to start
-      currentIndex = (currentIndex + 1) % hadiths.length;
     }
 
-    // Cycle to a new hadith every 10 seconds
-    setInterval(showNextHadith, 10000);
+    function nextHadith() {
+      // Increment index and wrap around at the end
+      currentIndex = (currentIndex + 1) % hadiths.length;
+      showCurrentHadith();
+    }
 
-    // Display the first hadith on page load
-    showNextHadith();
+    // Display the first hadith immediately
+    showCurrentHadith();
+    // Automatically cycle through hadiths
+    setInterval(nextHadith, displayInterval);
   </script>
 </body>
 </html>
