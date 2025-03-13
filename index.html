@@ -2,39 +2,35 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Hadith Slideshow</title>
+  <title>Centered Hadith Slideshow</title>
   <style>
-    /* Make body a fullscreen flex container */
+    /* Make body a fullscreen flex container for centering */
     body {
       margin: 0;
       padding: 0;
       display: flex;
       justify-content: center;  /* horizontal center */
       align-items: center;      /* vertical center */
-      height: 100vh;            /* fill entire viewport */
+      height: 100vh;            /* fill screen height */
       font-family: Arial, sans-serif;
-      text-align: center;       /* center text in each line */
+      text-align: center;       /* center text within container */
     }
 
-    /* 
-      We'll place the text in a simple wrapper.
-      Flex direction (column) if you want more control, but
-      for two lines, just use normal block flow in #hadith-container.
-    */
+    /* A container to hold the two lines of text */
     #hadith-container {
-      max-width: 800px;         /* optional: limit text width for readability */
-      margin: 0 1rem;           /* small side padding for narrower screens */
+      max-width: 800px;
+      margin: 0 1rem;  /* side padding for narrower screens */
     }
 
     .hadith-text {
       font-size: 2em;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.5rem; /* gap between text and reference line */
     }
 
     .hadith-reference {
       font-size: 1.2em;
-      color: #555;
-      margin-bottom: 2rem; /* space before next hadith appears */
+      color: #555; /* slightly lighter color to distinguish reference */
+      margin-bottom: 2rem;   /* extra space before the next hadith shows */
     }
   </style>
 </head>
@@ -44,21 +40,15 @@
   <script>
     const hadiths = [
       {
-        number: "Hadith #1",
-        text: "Actions are by intentions...",
-        reference: "[Bukhari & Muslim]"
-      },
-      {
-        number: "Hadith #2",
-        text: "None of you truly believes until...",
-        reference: "[Bukhari & Muslim]"
-      },
-      {
-        number: "Hadith #3",
+        // You can add a "number" property, too, if you want
         text: "The strong man is not the one...",
-        reference: "[Bukhari]"
+        reference: "Hadith #3: [Bukhari]"
+      },
+      {
+        text: "Actions are by intentions...",
+        reference: "Hadith #1: [Bukhari & Muslim]"
       }
-      // ... Add more hadiths as desired
+      // Add as many hadiths as you want
     ];
 
     let currentIndex = 0;
@@ -67,20 +57,24 @@
       const current = hadiths[currentIndex];
       const container = document.getElementById("hadith-container");
 
-      // Build HTML with two distinct lines
+      // Build HTML with the hadith on one line and reference on another
       container.innerHTML = `
-        <div class="hadith-text">"${current.text}"</div>
-        <div class="hadith-reference">${current.number}: ${current.reference}</div>
+        <div class="hadith-text">
+          "${current.text}"
+        </div>
+        <div class="hadith-reference">
+          ${current.reference}
+        </div>
       `;
 
-      // Cycle to the next hadith
+      // Move to the next hadith; loop back to start
       currentIndex = (currentIndex + 1) % hadiths.length;
     }
 
-    // Rotate hadith every 10 seconds
+    // Cycle to a new hadith every 10 seconds
     setInterval(showNextHadith, 10000);
 
-    // Show first hadith immediately
+    // Display the first hadith on page load
     showNextHadith();
   </script>
 </body>
