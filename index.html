@@ -1,40 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   <title>Hadith Slideshow</title>
   <style>
+    /* Make body a fullscreen flex container */
     body {
-      margin: 0; 
-      padding: 0; 
-      font-family: Arial, sans-serif; 
-      text-align: center;
-    }
-    #hadith-container {
+      margin: 0;
+      padding: 0;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column; /* Stack children vertically */
-      height: 100vh; /* Fill the screen */
-      padding: 20px;
+      justify-content: center;  /* horizontal center */
+      align-items: center;      /* vertical center */
+      height: 100vh;            /* fill entire viewport */
+      font-family: Arial, sans-serif;
+      text-align: center;       /* center text in each line */
     }
+
+    /* 
+      We'll place the text in a simple wrapper.
+      Flex direction (column) if you want more control, but
+      for two lines, just use normal block flow in #hadith-container.
+    */
+    #hadith-container {
+      max-width: 800px;         /* optional: limit text width for readability */
+      margin: 0 1rem;           /* small side padding for narrower screens */
+    }
+
     .hadith-text {
-      font-size: 1.8em;
-      margin-bottom: 10px; /* Space between text and reference */
+      font-size: 2em;
+      margin-bottom: 0.5rem;
     }
+
     .hadith-reference {
       font-size: 1.2em;
-      color: #666; /* Slightly lighter color for references */
+      color: #555;
+      margin-bottom: 2rem; /* space before next hadith appears */
     }
   </style>
 </head>
 <body>
-  <div id="hadith-container">
-    <!-- We'll dynamically insert content via JavaScript -->
-  </div>
+  <div id="hadith-container"></div>
 
   <script>
-    // Your structured hadith data
     const hadiths = [
       {
         number: "Hadith #1",
@@ -51,35 +58,29 @@
         text: "The strong man is not the one...",
         reference: "[Bukhari]"
       }
-      // ... Add more hadiths as needed
+      // ... Add more hadiths as desired
     ];
 
     let currentIndex = 0;
 
     function showNextHadith() {
-      // Grab the current hadith object
-      const currentHadith = hadiths[currentIndex];
+      const current = hadiths[currentIndex];
+      const container = document.getElementById("hadith-container");
 
-      // Build an HTML snippet
-      const html = `
-        <div class="hadith-text">${currentHadith.text}</div>
-        <div class="hadith-reference">
-          ${currentHadith.number} - ${currentHadith.reference}
-        </div>
+      // Build HTML with two distinct lines
+      container.innerHTML = `
+        <div class="hadith-text">"${current.text}"</div>
+        <div class="hadith-reference">${current.number}: ${current.reference}</div>
       `;
 
-      // Insert into the container
-      const container = document.getElementById("hadith-container");
-      container.innerHTML = html;
-
-      // Increment the index (loop back at the end)
+      // Cycle to the next hadith
       currentIndex = (currentIndex + 1) % hadiths.length;
     }
 
-    // Display a new hadith every 10 seconds
+    // Rotate hadith every 10 seconds
     setInterval(showNextHadith, 10000);
 
-    // Show the first hadith immediately on page load
+    // Show first hadith immediately
     showNextHadith();
   </script>
 </body>
