@@ -1,89 +1,90 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <title>Hadith Slideshow</title>
+  <meta charset="utf-8">
+  <title>Islamic Slideshow with JS Data</title>
   <style>
-    /* Make the body a full-screen flex container to center content */
+    /* 
+      Body as a fullscreen background:
+       - background-size: cover ensures it scales to fill the screen
+       - no-repeat center center
+    */
     body {
       margin: 0;
       padding: 0;
+      min-height: 100vh;
       display: flex;
-      justify-content: center;  /* horizontally center */
-      align-items: center;      /* vertically center */
-      height: 100vh;            /* fill entire screen's height */
+      justify-content: center;   /* center container horizontally */
+      align-items: center;       /* center container vertically */
       font-family: Arial, sans-serif;
-      text-align: center;       /* center text within the container */
+      text-align: center;        /* text is centered unless we override */
+      background: url('lantern-bg.jpeg') no-repeat center center;
+      background-size: cover;    /* scale image to fill screen */
     }
 
-    /* Container for each hadith */
     #hadith-container {
-      max-width: 800px;  /* limit the width for readability */
-      margin: 0 1rem;    /* small side padding for narrower screens */
+      max-width: 800px;
+      margin: 0 1rem;
+      background-color: rgba(255, 255, 255, 0.7); 
+      /* slightly white overlay for readability */
+      padding: 1.5rem;
+      border-radius: 8px;
     }
 
-    /* Style for the main hadith text */
     .hadith-text {
       font-size: 2em;
-      margin-bottom: 0.5em; /* small space between hadith text and reference */
+      margin-bottom: 0.5rem;
+      color: #333;
     }
 
-    /* Style for the reference line below the hadith */
     .hadith-reference {
       font-size: 1.2em;
       color: #555;
-      margin-bottom: 1.5rem; /* extra space before the slideshow changes */
+      margin-top: 1rem;
+    }
+
+    /* If you want bullet points left-aligned, use .left-list in your text */
+    .left-list {
+      text-align: left;
+      margin: 0 auto;
+      display: inline-block;
+    }
+    .left-list li {
+      margin-bottom: 0.5rem;
     }
   </style>
 </head>
-<body>
 
+<body>
   <div id="hadith-container">Loading...</div>
 
-  <script>
-    // === Add your hadiths here ===
-    const hadiths = [
-      {
-        number: "Hadith #1",
-        text: "Actions are (judged) by intentions...",
-        reference: "[Bukhari & Muslim]"
-      },
-      {
-        number: "Hadith #2",
-        text: "None of you truly believes until...",
-        reference: "[Bukhari & Muslim]"
-      },
-      {
-        number: "Hadith #3",
-        text: "The strong man is not the one who overcomes others...",
-        reference: "[Bukhari]"
-      }
-      // ... Add as many hadiths as you like
-    ];
+  <!-- 1. Load your data first -->
+  <script src="quotes.js"></script>
 
+  <!-- 2. Then run the slideshow -->
+  <script>
     let currentIndex = 0;
-    const displayInterval = 10000; // 10 seconds (adjust as needed)
+    const displayInterval = 10000; // 10 seconds
 
     function showCurrentHadith() {
       const container = document.getElementById('hadith-container');
       const current = hadiths[currentIndex];
 
-      // Separate line for main hadith text and reference
+      // Insert the hadith text as HTML so <ol>, <li>, <br> tags render
       container.innerHTML = `
-        <div class="hadith-text">"${current.text}"</div>
+        <div class="hadith-text">${current.text}</div>
         <div class="hadith-reference">${current.number}: ${current.reference}</div>
       `;
     }
 
     function nextHadith() {
-      // Increment index and wrap around at the end
       currentIndex = (currentIndex + 1) % hadiths.length;
       showCurrentHadith();
     }
 
-    // Display the first hadith immediately
+    // Show the first hadith immediately
     showCurrentHadith();
-    // Automatically cycle through hadiths
+    // Cycle automatically
     setInterval(nextHadith, displayInterval);
   </script>
 </body>
