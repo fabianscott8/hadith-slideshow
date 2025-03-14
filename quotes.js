@@ -84,7 +84,32 @@ The Prophet (ﷺ) added:
   },
   {
     number: "47:24",
-    text: '“…This day I have perfected for you your religion and completed My favor upon you and have approved for you Islam as your religion...”',
+    text: '“Then do they not reflect upon the Quran, or are there locks upon their hearts?”',
     reference: "[Surah Muhammad]"
+  },
+  {
+    number: "Book 7, Hadith 1",
+    text: 'Abdullah is reported to have heard Allah\'s Messenger (ﷺ) as saying:<p>When any one of you intends to come for Jumu\'a prayer, he should take a bath.',
+    reference: "[Sahih Muslim 844a]"
+  },
+  {
+    number: "Book 47, Hadith 1",
+    text: 'The Messenger of Allah [SAW] was asked:<p> "Which deed is best?" "He said: Faith in Allah [SWT] and His messenger [SAW]."',
+    reference: "[Sunan an-Nasa'i 4985]"
+  },
+  {
+    number: "Book 47, Hadith 5",
+    text: 'The Prophet [SAW] said: <p>"There are three things, whoever attains them will find therein the sweetness of Islam: When Allah [SWT] and His Messenger [SAW] are dearer to him than all else; when he loves a person and only loves him for the sake of Allah [SWT]; and when he would hate to go back to disbelief as much as he would hate to be thrown into the fire."',
+    reference: "[Sunan an-Nasa'i 4989]"
+  },
+  {
+    number: "6:115",
+    text: '“And the word of your Lord has been fulfilled in truth and justice. None can change His words, and He is the Hearing, the Knowing.”',
+    reference: "[Surah Al-An’am]"
+  },
+  {
+    number: "15:9",
+    text: '“Indeed, We have sent down the Qur’an, and indeed, We will be its guardian.”',
+    reference: "[Surah Al-Hijr]"
   },
 ];
