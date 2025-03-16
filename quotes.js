@@ -112,4 +112,19 @@ The Prophet (ﷺ) added:
     text: '“Indeed, We have sent down the Qur’an, and indeed, We will be its guardian.”',
     reference: "[Surah Al-Hijr]"
   },
+  {
+    number: "17:23-24",
+    text: '“And your Lord has decreed that you not worship except Him, and to parents, good treatment. Whether one or both of them reach old age with you, say not to them ‘uff’ (a word of disrespect), nor repel them but speak to them a noble word. And lower to them the wing of humility out of mercy and say, ‘My Lord, have mercy upon them as they brought me up [when I was] small.’”',
+    reference: "[Surah Al-Isra]"
+  },
+  {
+    number: "1899",
+    text: 'The Prophet (ﷺ) said:<p>“The pleasure of the Lord is in the pleasure of the parent, and the anger of the Lord is in the anger of the parent.”',
+    reference: "[Sunan al-Tirmidhi]"
+  },
+  {
+    number: "31:15",
+    text: 'But if they (parents) pressure you to associate with Me what you have no knowledge of, do not obey them. Still keep their company in this world courteously, and follow the way of those who turn to Me ˹in devotion˺. Then to Me you will ˹all˺ return, and then I will inform you of what you used to do.',
+    reference: "[Sunan al-Tirmidhi]"
+  },
 ];
